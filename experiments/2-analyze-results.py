@@ -10,6 +10,8 @@ summary = summary[ summary['EquationName'].str.contains('FeynmanBonus')]
 max_training_rmse = np.max(summary['RMSE_Training'])
 max_test_rmse = np.max(summary['RMSE_Test'])
 max_rmse = np.max(summary['RMSE_Full'])
+
+#replace the default value of unseccussful runs with the maximum known value
 summary.loc[summary['RMSE_Training'] == -1 ,'RMSE_Training'] = max_training_rmse
 summary.loc[summary['RMSE_Test'] == -1 ,'RMSE_Test'] = max_test_rmse
 summary.loc[summary['RMSE_Full'] == -1 ,'RMSE_Full'] = max_rmse

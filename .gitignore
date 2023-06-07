@@ -161,3 +161,10 @@ cython_debug/
 Scripts
 share
 pyvenv.cfg
+.vscode
+
+experiments/gridsearch_data
+experiments/gridsearch_results
+experiments/repeated_best_config_data
+experiments/repeated_best_config_results
+experiments/archive
