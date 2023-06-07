@@ -24,16 +24,10 @@ print( median_per_repetition.groupby(['EquationName','Configuration','SampleSize
 median_per_repetition = median_per_repetition.groupby(['EquationName','Configuration','SampleSize','NoiseLevel' ]).median().reset_index()
 print(median_per_repetition)
 
-# performance = summary[['EquationName','Runtime']]
-# performance = performance.groupby('EquationName').mean()
-# print(f"runtime average")
-# print(performance)
 
 
 
 sns.set_theme(style="ticks", palette="husl")
-f, ax = plt.subplots(2,5, figsize=(10, 4), sharex=True, sharey=True)
-plt.subplots_adjust(left=0.11, bottom=0.1, right=0.98, top=0.90, wspace=0.1, hspace=0.1)
 
 
 print("data for")
@@ -41,57 +35,55 @@ print(np.unique(median_per_repetition['EquationName']))
 print(np.unique(median_per_repetition['SampleSize']))
 print(np.unique(median_per_repetition['NoiseLevel']))
 
-row = 0
-max_row_idx = len(np.unique(median_per_repetition['SampleSize']))-1
 
-for sampleSize in np.unique(median_per_repetition['SampleSize']):
-  col = 0
-  for noiseLevel in np.unique(median_per_repetition['NoiseLevel']):
-    df = median_per_repetition[ ((median_per_repetition['SampleSize'] == sampleSize) |
-                      (median_per_repetition['NoiseLevel'] == noiseLevel)) ]
-    bx = sns.boxplot(y="R2_Test",
-                     x = "Configuration",
-                     hue = "Configuration",
-          data=df,
-          ax = ax[row,col] )
-    
-    bx.set(xticklabels=[])
+def plotFigure(yAxis, yAxisLabel):
+  f, ax = plt.subplots(2,5, figsize=(10, 4), sharex=True, sharey=True)
+  plt.subplots_adjust(left=0.11, bottom=0.1, right=0.98, top=0.90, wspace=0.1, hspace=0.1)
 
-    # ax[row,col].set_yscale("log")
+  row = 0
+  max_row_idx = len(np.unique(median_per_repetition['SampleSize']))-1
 
-    if(row == max_row_idx):
-      ax[row,col].set_xlabel(f'noise level = {noiseLevel}')
-    else:
-      ax[row,col].set_xlabel(f'')
-    if(col == 0):
-      ax[row,col].set_ylabel(f'sample_size = {sampleSize}\nR2 validation')
-    else:
-      ax[row,col].set_ylabel(f'')
+  for sampleSize in np.unique(median_per_repetition['SampleSize']):
+    col = 0
+    for noiseLevel in np.unique(median_per_repetition['NoiseLevel']):
+      df = median_per_repetition[ ((median_per_repetition['SampleSize'] == sampleSize) |
+                        (median_per_repetition['NoiseLevel'] == noiseLevel)) ]
+      bx = sns.boxplot(y=yAxis,
+                      x = "Configuration",
+                      hue = "Configuration",
+            data=df,
+            ax = ax[row,col] )
+      
+      bx.set(xticklabels=[])
 
-    col = col+1
+      # ax[row,col].set_yscale("log")
 
-  row = row+1
+      if(row == max_row_idx):
+        ax[row,col].set_xlabel(f'noise level = {noiseLevel}')
+      else:
+        ax[row,col].set_xlabel(f'')
+      if(col == 0):
+        ax[row,col].set_ylabel(f'sample_size = {sampleSize}\n{yAxisLabel}')
+      else:
+        ax[row,col].set_ylabel(f'')
 
-lines_labels = [ax.get_legend_handles_labels() for ax in f.axes]
-lines, labels = [sum(total, []) for total in zip(*lines_labels)]
-lines = lines[:3]
-labels = labels[:3]
-for ax in f.axes:
-  ax.get_legend().remove()
+      col = col+1
 
-f.legend(lines,labels,
-            loc='upper center', ncol=3)
-plt.savefig('./experiments/summary.png',dpi = 500)
-plt.show()
+    row = row+1
 
-# summary = summary[['EquationName','Degree','Lambda','Alpha','MaxInteractions','RMSE_Training','RMSE_Test','RMSE_Full']]
-# configuration = summary.groupby(['EquationName','Degree','Lambda','Alpha','MaxInteractions']).mean()
+  lines_labels = [ax.get_legend_handles_labels() for ax in f.axes]
+  lines, labels = [sum(total, []) for total in zip(*lines_labels)]
+  lines = lines[:3]
+  labels = labels[:3]
+  for ax in f.axes:
+    ax.get_legend().remove()
 
-# configuration = configuration.reset_index()
-# print(configuration.groupby(['EquationName']).min())
+  f.legend(lines,labels,
+              loc='upper center', ncol=3)
+  plt.savefig(f'./experiments/summary_{yAxis}.png',dpi = 500)
+  plt.show()
+  plt.clf()
+  plt.close()
 
-# best_configuration = configuration.iloc[configuration.groupby(['EquationName']).idxmin()['RMSE_Test'].values]
-# print(best_configuration)
-# best_configuration = best_configuration[['EquationName','Degree','Lambda','Alpha','MaxInteractions']]
-# best_configuration.to_csv('./experiments/best_configruations.csv', index = False)
-
+plotFigure("R2_Training", "R2 training")
+plotFigure("R2_Test", "R2 validation")
