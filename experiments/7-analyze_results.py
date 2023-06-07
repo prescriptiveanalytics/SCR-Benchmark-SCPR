@@ -95,6 +95,7 @@ def plotFigure(yAxis, yAxisLabel, plot = 'boxplot'):
 
   f.legend(lines,labels,
               loc='upper center', ncol=3)
+  plt.savefig(f'./experiments/summary_{plot}_{yAxis}.pdf',dpi = 500)
   plt.savefig(f'./experiments/summary_{plot}_{yAxis}.png',dpi = 500)
   plt.show()
   plt.clf()
