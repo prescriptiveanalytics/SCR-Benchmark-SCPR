@@ -33,7 +33,11 @@ These **preliminary** results contain only the 18 bonus Feynman equations.
 
 Experiments are repeated 10 times and we report the median of these repetitions over all equations.
 Results on the training data:
-![results](./experiments/summary_R2_Training.png)
+![results](./experiments/summary_boxplot_R2_Training.png)
+
+![results](./experiments/summary_pointplot_R2_Training.png)
 
 Results on the validation data (no noise, more data points in the extrapolation range. See our [benchmark repository](https://github.com/florianBachinger/SCR-Benchmarks-NIPS) for more details):
-![results](./experiments/summary_R2_Test.png)
+![results](./experiments/summary_boxplot_R2_Test.png)
+
+![results](./experiments/summary_pointplot_R2_Test.png)

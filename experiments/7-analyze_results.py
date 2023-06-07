@@ -24,10 +24,10 @@ summary = pd.concat([summary_best,summary_degree2, summary_degree3])
 summary['SampleSize'] = [ filename.split('sample_size')[1].split('_')[0] for filename in summary['DataSourceFile']]
 summary['NoiseLevel'] = [ filename.split('noise_level')[1].split('_')[0] for filename in summary['DataSourceFile']]
 
-median_per_repetition = summary[['EquationName','Configuration','SampleSize','NoiseLevel','R2_Training','R2_Test' ]]
-print( median_per_repetition.groupby(['EquationName','Configuration','SampleSize','NoiseLevel' ]).count().reset_index())
-median_per_repetition = median_per_repetition.groupby(['EquationName','Configuration','SampleSize','NoiseLevel' ]).median().reset_index()
-print(median_per_repetition)
+mean_per_repetition = summary[['EquationName','Configuration','SampleSize','NoiseLevel','R2_Training','R2_Test' ]]
+print( mean_per_repetition.groupby(['EquationName','Configuration','SampleSize','NoiseLevel' ]).count().reset_index())
+mean_per_repetition = mean_per_repetition.groupby(['EquationName','Configuration','SampleSize','NoiseLevel' ]).mean().reset_index()
+print(mean_per_repetition)
 
 
 
@@ -36,28 +36,38 @@ sns.set_theme(style="ticks", palette="husl")
 
 
 print("data for")
-print(np.unique(median_per_repetition['EquationName']))
-print(np.unique(median_per_repetition['SampleSize']))
-print(np.unique(median_per_repetition['NoiseLevel']))
+print(np.unique(mean_per_repetition['EquationName']))
+print(np.unique(mean_per_repetition['SampleSize']))
+print(np.unique(mean_per_repetition['NoiseLevel']))
 
 
-def plotFigure(yAxis, yAxisLabel):
+
+def plotFigure(yAxis, yAxisLabel, plot = 'boxplot'):
   f, ax = plt.subplots(2,5, figsize=(10, 4), sharex=True, sharey=True)
   plt.subplots_adjust(left=0.11, bottom=0.1, right=0.98, top=0.90, wspace=0.1, hspace=0.1)
 
   row = 0
-  max_row_idx = len(np.unique(median_per_repetition['SampleSize']))-1
+  max_row_idx = len(np.unique(mean_per_repetition['SampleSize']))-1
 
-  for sampleSize in np.unique(median_per_repetition['SampleSize']):
+  for sampleSize in np.unique(mean_per_repetition['SampleSize']):
     col = 0
-    for noiseLevel in np.unique(median_per_repetition['NoiseLevel']):
-      df = median_per_repetition[ ((median_per_repetition['SampleSize'] == sampleSize) |
-                        (median_per_repetition['NoiseLevel'] == noiseLevel)) ]
-      bx = sns.boxplot(y=yAxis,
-                      x = "Configuration",
-                      hue = "Configuration",
-            data=df,
-            ax = ax[row,col] )
+    for noiseLevel in np.unique(mean_per_repetition['NoiseLevel']):
+      df = mean_per_repetition[ ((mean_per_repetition['SampleSize'] == sampleSize) |
+                        (mean_per_repetition['NoiseLevel'] == noiseLevel)) ]
+      
+      if(plot == 'boxplot'):
+        bx = sns.boxplot(y=yAxis,
+                  x = "Configuration",
+                  hue = "Configuration",
+                  data=df,
+                  ax = ax[row,col] )
+      elif(plot == "pointplot"):
+        bx = sns.pointplot(y=yAxis,
+                        x = "Configuration",
+                        hue = "Configuration",
+                        errorbar = ('pi',100),
+                        data=df,
+                        ax = ax[row,col] )
       
       bx.set(xticklabels=[])
 
@@ -85,10 +95,12 @@ def plotFigure(yAxis, yAxisLabel):
 
   f.legend(lines,labels,
               loc='upper center', ncol=3)
-  plt.savefig(f'./experiments/summary_{yAxis}.png',dpi = 500)
+  plt.savefig(f'./experiments/summary_{plot}_{yAxis}.png',dpi = 500)
   plt.show()
   plt.clf()
   plt.close()
 
-plotFigure("R2_Training", "R2 training")
-plotFigure("R2_Test", "R2 validation")
+plotFigure("R2_Training", "R2 training",'boxplot')
+plotFigure("R2_Test", "R2 validation",'boxplot')
+plotFigure("R2_Training", "R2 training",'pointplot')
+plotFigure("R2_Test", "R2 validation",'pointplot')
