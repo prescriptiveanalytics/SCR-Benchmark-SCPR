@@ -27,7 +27,7 @@ BenchmarkSuite.create_hard_instances(target_folder = target_folder,
 ```
 
 ## Results
-For the sake of comparsion, in our initial publication, we compare the respective best configuration for each equation (degree- $d$ , $\alpha$ , $\lambda$ , max interactions) to the respective best configurations for lower degree polynomial (so: degree-$d \in {2,3}$ but respective best, $\alpha$,$\lambda$, max interactions).
+For the sake of comparsion, in our initial publication, we compare the respective best configuration for each equation (degree- $d$ , $\alpha$ , $\lambda$ , max interactions) to the respective best configurations for lower degree polynomial (so: degree- $d \in {2,3}$ but respective best, $\alpha$, $\lambda$, max interactions).
 
 These **preliminary** results contain only the 18 bonus Feynman equations.
 
