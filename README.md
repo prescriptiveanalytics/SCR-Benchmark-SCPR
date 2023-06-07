@@ -3,7 +3,7 @@ This repository contains the results of **shape-constrained polynomial regressio
 
 
 ## Shape-constrained polynomial regression (SCPR)
-The hyperparameters of SCPR are the total degree-$d$
+The hyperparameters of SCPR are the total degree- $d$
 of the polynomial, $\lambda$, to determine the strength of regularization, and $\alpha$ to
 balance the 1-norm and the 2-norm penalties. We solve the semidefinite programming problem using the commercial solver [Mosek](https://www.mosek.com). Cf. [Hall](http://arks.princeton.edu/ark:/88435/dsp014m90dz20p) for a detailed
 mathematical description of SCPR.
@@ -27,7 +27,7 @@ BenchmarkSuite.create_hard_instances(target_folder = target_folder,
 ```
 
 ## Results
-For the sake of comparsion, in our initial publication, we compare the respective best configuration for each equation (degree-$d$,$\alpha$,$\lambda$, max interactions) to the respective best configurations for lower degree polynomial (so: degree-$d \in {2,3}$ but respective best, $\alpha$,$\lambda$, max interactions).
+For the sake of comparsion, in our initial publication, we compare the respective best configuration for each equation (degree- $d$ , $\alpha$ , $\lambda$ , max interactions) to the respective best configurations for lower degree polynomial (so: degree-$d \in {2,3}$ but respective best, $\alpha$,$\lambda$, max interactions).
 
 These **preliminary** results contain only the 18 bonus Feynman equations.
 
