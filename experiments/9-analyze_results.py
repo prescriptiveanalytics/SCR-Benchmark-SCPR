@@ -92,8 +92,8 @@ def plotFigure(yAxis, yAxisLabel, plot = 'boxplot'):
 
   lines_labels = [ax.get_legend_handles_labels() for ax in f.axes]
   lines, labels = [sum(total, []) for total in zip(*lines_labels)]
-  lines = lines[:4]
-  labels = labels[:4]
+  lines = lines[:3]
+  labels = labels[:3]
   for ax in f.axes:
     ax.get_legend().remove()
 
