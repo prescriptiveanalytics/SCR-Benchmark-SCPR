@@ -170,3 +170,9 @@ experiments/repeated_best_degree2_data/**/*.csv
 experiments/repeated_best_degree3_data/**/*.csv
 experiments/repeated_best_config_results
 experiments/archive
+
+# Visual Studio
+obj/
+bin/
+.vs
+*.user

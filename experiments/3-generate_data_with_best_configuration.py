@@ -56,6 +56,8 @@ for equation_name in instances:
     supportedConstraints = []
     for constraint in data['Constraints']:
       if constraint['order_derivative'] == 2:
+        # our current SCPR implementation only supports partial derivatives of 
+        # order 2 if we derive over the same variable twice
         variables = np.unique(constraint['var_name'])
         variables_display = np.unique(constraint['var_display_name'])
         if(len(variables) == 1):

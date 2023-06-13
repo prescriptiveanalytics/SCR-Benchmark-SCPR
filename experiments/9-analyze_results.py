@@ -6,16 +6,16 @@ import os
 import pandas as pd
 import numpy as np
 
-summary_best = pd.read_csv('./experiments/repeated_best_config_results/summary_best.csv')
+summary_best = pd.read_csv('./experiments/results/summary_best.csv')
 summary_best['Configuration'] = ['best parameters'] * len(summary_best)
 print(f"average runtime [best configuration] {np.mean(summary_best[ summary_best['Successful'] == True]['Runtime'])}" )
 
-summary_degree2= pd.read_csv('./experiments/repeated_best_config_results/summary_degree2.csv')
+summary_degree2= pd.read_csv('./experiments/results/summary_degree2.csv')
 summary_degree2['Configuration'] = ['degree 2'] * len(summary_degree2)
 print(f"average runtime [degree 2] {np.mean(summary_degree2[ summary_degree2['Successful'] == True]['Runtime'])}" )
 
 
-summary_degree3 = pd.read_csv('./experiments/repeated_best_config_results/summary_degree3.csv')
+summary_degree3 = pd.read_csv('./experiments/results/summary_degree3.csv')
 summary_degree3['Configuration'] = ['degree 3'] * len(summary_degree3)
 print(f"average runtime [degree 3] {np.mean(summary_degree3[ summary_degree3['Successful'] == True]['Runtime'])}" )
 
@@ -23,6 +23,10 @@ print(f"average runtime [degree 3] {np.mean(summary_degree3[ summary_degree3['Su
 summary = pd.concat([summary_best,summary_degree2, summary_degree3])
 summary['SampleSize'] = [ filename.split('sample_size')[1].split('_')[0] for filename in summary['DataSourceFile']]
 summary['NoiseLevel'] = [ filename.split('noise_level')[1].split('_')[0] for filename in summary['DataSourceFile']]
+
+print(len(summary))
+summary = summary[summary['Successful'] == True]
+print(len(summary))
 
 mean_per_repetition = summary[['EquationName','Configuration','SampleSize','NoiseLevel','R2_Training','R2_Test' ]]
 print( mean_per_repetition.groupby(['EquationName','Configuration','SampleSize','NoiseLevel' ]).count().reset_index())
