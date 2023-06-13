@@ -1,0 +1,250 @@
+{
+  "EquationName": "FeynmanBonus1",
+  "TargetVariable": "A",
+  "InputVariableRanges": [
+    {
+      "name": "x0",
+      "low": 1,
+      "high": 10
+    },
+    {
+      "name": "x1",
+      "low": 1,
+      "high": 10
+    },
+    {
+      "name": "x2",
+      "low": 1e-18,
+      "high": 1e-16
+    },
+    {
+      "name": "x3",
+      "low": 0,
+      "high": 6.283185307179586
+    }
+  ],
+  "Constraints": [
+    {
+      "var_name": "x0",
+      "var_display_name": "Z_1",
+      "order_derivative": 1,
+      "descriptor": "monotonic increasing",
+      "derivative": "6.65325853253582e-57*x0*x1**2/(x2**2*sin(x3/2)**4)",
+      "sample_space": [
+        {
+          "name": "x0",
+          "low": 1,
+          "high": 10
+        },
+        {
+          "name": "x1",
+          "low": 1,
+          "high": 10
+        },
+        {
+          "name": "x2",
+          "low": 1e-18,
+          "high": 1e-16
+        },
+        {
+          "name": "x3",
+          "low": 0,
+          "high": 6.283185307179586
+        }
+      ],
+      "id": 1
+    },
+    {
+      "var_name": "x1",
+      "var_display_name": "Z_2",
+      "order_derivative": 1,
+      "descriptor": "monotonic increasing",
+      "derivative": "6.65325853253582e-57*x0**2*x1/(x2**2*sin(x3/2)**4)",
+      "sample_space": [
+        {
+          "name": "x0",
+          "low": 1,
+          "high": 10
+        },
+        {
+          "name": "x1",
+          "low": 1,
+          "high": 10
+        },
+        {
+          "name": "x2",
+          "low": 1e-18,
+          "high": 1e-16
+        },
+        {
+          "name": "x3",
+          "low": 0,
+          "high": 6.283185307179586
+        }
+      ],
+      "id": 2
+    },
+    {
+      "var_name": "x2",
+      "var_display_name": "E_n",
+      "order_derivative": 1,
+      "descriptor": "monotonic decreasing",
+      "derivative": "-6.65325853253582e-57*x0**2*x1**2/(x2**3*sin(x3/2)**4)",
+      "sample_space": [
+        {
+          "name": "x0",
+          "low": 1,
+          "high": 10
+        },
+        {
+          "name": "x1",
+          "low": 1,
+          "high": 10
+        },
+        {
+          "name": "x2",
+          "low": 1e-18,
+          "high": 1e-16
+        },
+        {
+          "name": "x3",
+          "low": 0,
+          "high": 6.283185307179586
+        }
+      ],
+      "id": 3
+    },
+    {
+      "var_name": "x0",
+      "var_display_name": "Z_1",
+      "order_derivative": 2,
+      "descriptor": "monotonic increasing",
+      "derivative": "6.65325853253582e-57*x1**2/(x2**2*sin(x3/2)**4)",
+      "sample_space": [
+        {
+          "name": "x0",
+          "low": 1,
+          "high": 10
+        },
+        {
+          "name": "x1",
+          "low": 1,
+          "high": 10
+        },
+        {
+          "name": "x2",
+          "low": 1e-18,
+          "high": 1e-16
+        },
+        {
+          "name": "x3",
+          "low": 0,
+          "high": 6.283185307179586
+        }
+      ],
+      "id": 4
+    },
+    {
+      "var_name": "x1",
+      "var_display_name": "Z_2",
+      "order_derivative": 2,
+      "descriptor": "monotonic increasing",
+      "derivative": "6.65325853253582e-57*x0**2/(x2**2*sin(x3/2)**4)",
+      "sample_space": [
+        {
+          "name": "x0",
+          "low": 1,
+          "high": 10
+        },
+        {
+          "name": "x1",
+          "low": 1,
+          "high": 10
+        },
+        {
+          "name": "x2",
+          "low": 1e-18,
+          "high": 1e-16
+        },
+        {
+          "name": "x3",
+          "low": 0,
+          "high": 6.283185307179586
+        }
+      ],
+      "id": 8
+    },
+    {
+      "var_name": "x2",
+      "var_display_name": "E_n",
+      "order_derivative": 2,
+      "descriptor": "monotonic increasing",
+      "derivative": "1.99597755976075e-56*x0**2*x1**2/(x2**4*sin(x3/2)**4)",
+      "sample_space": [
+        {
+          "name": "x0",
+          "low": 1,
+          "high": 10
+        },
+        {
+          "name": "x1",
+          "low": 1,
+          "high": 10
+        },
+        {
+          "name": "x2",
+          "low": 1e-18,
+          "high": 1e-16
+        },
+        {
+          "name": "x3",
+          "low": 0,
+          "high": 6.283185307179586
+        }
+      ],
+      "id": 12
+    },
+    {
+      "var_name": "x3",
+      "var_display_name": "theta",
+      "order_derivative": 2,
+      "descriptor": "monotonic increasing",
+      "derivative": "3.32662926626791e-57*x0**2*x1**2/(x2**2*sin(x3/2)**4) + 1.66331463313395e-56*x0**2*x1**2*cos(x3/2)**2/(x2**2*sin(x3/2)**6)",
+      "sample_space": [
+        {
+          "name": "x0",
+          "low": 1,
+          "high": 10
+        },
+        {
+          "name": "x1",
+          "low": 1,
+          "high": 10
+        },
+        {
+          "name": "x2",
+          "low": 1e-18,
+          "high": 1e-16
+        },
+        {
+          "name": "x3",
+          "low": 0,
+          "high": 6.283185307179586
+        }
+      ],
+      "id": 13
+    }
+  ],
+  "Degrees": [
+    3
+  ],
+  "Lambdas": [
+    0.1
+  ],
+  "Alphas": [
+    1.0
+  ],
+  "MaxInteractions": [
+    2
+  ]
+}
