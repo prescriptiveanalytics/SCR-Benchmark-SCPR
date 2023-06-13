@@ -14,11 +14,9 @@ summary_degree2= pd.read_csv('./experiments/results/summary_degree2.csv')
 summary_degree2['Configuration'] = ['degree 2'] * len(summary_degree2)
 print(f"average runtime [degree 2] {np.mean(summary_degree2[ summary_degree2['Successful'] == True]['Runtime'])}" )
 
-
 summary_degree3 = pd.read_csv('./experiments/results/summary_degree3.csv')
 summary_degree3['Configuration'] = ['degree 3'] * len(summary_degree3)
 print(f"average runtime [degree 3] {np.mean(summary_degree3[ summary_degree3['Successful'] == True]['Runtime'])}" )
-
 
 summary = pd.concat([summary_best,summary_degree2, summary_degree3])
 summary['SampleSize'] = [ filename.split('sample_size')[1].split('_')[0] for filename in summary['DataSourceFile']]
@@ -109,3 +107,4 @@ plotFigure("R2_Training", "R2 training",'boxplot')
 plotFigure("R2_Test", "R2 validation",'boxplot')
 plotFigure("R2_Training", "R2 training",'pointplot')
 plotFigure("R2_Test", "R2 validation",'pointplot')
+

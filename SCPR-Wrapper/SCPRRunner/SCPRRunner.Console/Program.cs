@@ -21,6 +21,7 @@ Console.WriteLine("argument[2]: resulting data folder for individual model repor
 Console.WriteLine("argument[3]: resulting csv file location");
 Console.WriteLine("argument[4]: int degree of parallelism");
 Console.WriteLine("argument[5]: write individual csv files");
+Console.WriteLine("argument[6]: maximum restarts");
 
 //prepare data sources and result path
 string dataParentFolder = Environment.GetCommandLineArgs()[1];
@@ -28,6 +29,7 @@ string resultFolder = Environment.GetCommandLineArgs()[2];
 string mlResultFile = Environment.GetCommandLineArgs()[3];
 int degreeParallelism = int.Parse(Environment.GetCommandLineArgs()[4]);
 bool writeIndividualResultFiles = bool.Parse(Environment.GetCommandLineArgs()[5]);
+int max_restarts = int.Parse(Environment.GetCommandLineArgs()[6]);
 var file_write_lock = new object();
 
 
@@ -114,7 +116,7 @@ dataFile => {
             if (!results.Any(x => x.SameConfiguration(result_record) == 0)) {
 
               var tokenSource = new CancellationTokenSource();
-              var timer = new System.Timers.Timer(TimeSpan.FromMinutes(2.5).TotalMilliseconds); 
+              var timer = new System.Timers.Timer(TimeSpan.FromMinutes(2.5).TotalMilliseconds);
               timer.Elapsed += delegate {
                 Console.WriteLine($"file: {dataFile} degree: {degree} interactions:{interactions} lambda:{lambda} alpha: {alpha} TIMER ELAPSED");
 
@@ -126,10 +128,23 @@ dataFile => {
               var watch = new System.Diagnostics.Stopwatch();
               watch.Start();
 
-              if (TrainModel(X: X_train, y: y_train, inputs: inputVariables, target: target,
+              int restart = 0;
+              bool success = false;
+
+              Polynomial polynomial = null;
+              while ((! (success = TrainModel(X: X_train, y: y_train, inputs: inputVariables, target: target,
                             degree: degree, alpha: alpha, lambda: lambda,
-                            max_interactions: interactions, constraints: constraints, cancellationToken: tokenSource.Token, out Polynomial polynomial,
-                            out Result regressionResult)) {
+                            max_interactions: interactions, constraints: constraints, cancellationToken: tokenSource.Token, out polynomial,
+                            out Result regressionResult))) && restart < max_restarts) {
+                restart++;
+                var seed = $"{equation_name}{restart}";
+                var rand1 = new Random(seed.GetHashCode());
+                var rand2 = new Random(seed.GetHashCode());
+                X_train = Shuffle2D(rand1,X_train);
+                y_train = Shuffle1D(rand2,y_train);
+              }  
+
+              if (success) {
 
                 watch.Stop();
                 Console.WriteLine($"Execution Time: {watch.ElapsedMilliseconds} ms");
