@@ -1,0 +1,1 @@
+{"EquationName": "FeynmanICh37Eq4", "TargetVariable": "Int", "InputVariableRanges": [{"name": "x0", "low": 0.001, "high": 0.1}, {"name": "x1", "low": 0.001, "high": 0.1}, {"name": "x2", "low": 0, "high": 6.283185307179586}], "Constraints": [], "Degrees": [5], "Lambdas": [0.001], "Alphas": [1.0], "MaxInteractions": [3]}

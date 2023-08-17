@@ -3,24 +3,7 @@ import pandas as pd
 import numpy as np
 from SCRBenchmark import FEYNMAN_SRSD_HARD,HARD_NOISE_LEVELS,HARD_SAMPLE_SIZES
 
-instances = ['FeynmanBonus1'
-,'FeynmanBonus2'
-,'FeynmanBonus3'
-,'FeynmanBonus4'
-,'FeynmanBonus5'
-,'FeynmanBonus6'
-,'FeynmanBonus7'
-,'FeynmanBonus9'
-,'FeynmanBonus10'
-,'FeynmanBonus11'
-,'FeynmanBonus12'
-,'FeynmanBonus13'
-,'FeynmanBonus14'
-,'FeynmanBonus15'
-,'FeynmanBonus16'
-,'FeynmanBonus17'
-,'FeynmanBonus19'
-,'FeynmanBonus20']
+instances = FEYNMAN_SRSD_HARD
 
 
 

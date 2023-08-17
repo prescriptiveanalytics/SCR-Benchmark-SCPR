@@ -7,25 +7,7 @@ import pandas as pd
 target_folder = './experiments/repeated_best_degree3_data'
 
 best_configurations = pd.read_csv('./experiments/best_degree3_configuration.csv')
-# instances = FEYNMAN_SRSD_HARD
-instances = ['FeynmanBonus1'
-,'FeynmanBonus2'
-,'FeynmanBonus3'
-,'FeynmanBonus4'
-,'FeynmanBonus5'
-,'FeynmanBonus6'
-,'FeynmanBonus7'
-,'FeynmanBonus9'
-,'FeynmanBonus10'
-,'FeynmanBonus11'
-,'FeynmanBonus12'
-,'FeynmanBonus13'
-,'FeynmanBonus14'
-,'FeynmanBonus15'
-,'FeynmanBonus16'
-,'FeynmanBonus17'
-,'FeynmanBonus19'
-,'FeynmanBonus20']
+instances = FEYNMAN_SRSD_HARD
 
 print('generating instances')
 #creates one folder per equation under the parent folder

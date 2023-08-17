@@ -5,7 +5,10 @@ import numpy as np
 summary = pd.read_csv('./experiments/gridsearch_results/summary.csv')
 summary['SampleSize'] = [ filename.split('sample_size')[1].split('_')[0] for filename in summary['DataSourceFile']]
 summary['NoiseLevel'] = [ filename.split('noise_level')[1].split('_')[0] for filename in summary['DataSourceFile']]
-summary = summary[ summary['EquationName'].str.contains('FeynmanBonus')]
+# summary = summary[ summary['EquationName'].str.contains('FeynmanBonus')]
+
+summary = summary[ summary['Degree'] <= 5]
+summary = summary[ summary['MaxInteractions'] <= 3]
 
 max_training_rmse = np.max(summary['RMSE_Training'])
 max_test_rmse = np.max(summary['RMSE_Test'])

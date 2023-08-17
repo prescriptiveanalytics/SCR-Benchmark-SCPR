@@ -5,10 +5,10 @@ import numpy as np
 
 target_folder = './experiments/gridsearch_data'
 
-Degrees = [1,2,3,4,5,6,7]
+Degrees = [1,2,3,4,5]
 Lambdas = [10**-7,10**-6,10**-5,10**-4,10**-3,10**-2,10**-1,1,10]
 Alphas = [0,0.5,1]
-MaxInteractions = [2,3,4]
+MaxInteractions = [2,3]
 
 print('generating instances')
 #creates one folder per equation under the parent folder
