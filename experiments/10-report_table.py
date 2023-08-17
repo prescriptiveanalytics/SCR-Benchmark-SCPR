@@ -31,6 +31,9 @@ def reportSuccessfulRuns(summary, fileName, formatters = None,float_format = Non
   df['NoiseLevel'] = [ "{:.2f}".format(level) for level in df['NoiseLevel']]
   sum = df.groupby(['EquationName','SampleSize','NoiseLevel']).sum().reset_index()
   pivot = sum.pivot(index='EquationName', columns=['SampleSize','NoiseLevel'], values='Helper')
+  pivot = pivot.reindex(instances)
+
+
   pivot.to_csv(f'./results/{fileName}.csv')
   pivot.to_latex(f'./results/{fileName}.tex', formatters = formatters, float_format = float_format)
 
@@ -50,8 +53,11 @@ def reportR2ValidationMean(summary, fileName, formatters = None,float_format = N
   df['NoiseLevel'] = [ "{:.2f}".format(level) for level in df['NoiseLevel']]
   sum = df.groupby(['EquationName','SampleSize','NoiseLevel']).mean().reset_index()
   pivot = sum.pivot(index='EquationName', columns=['SampleSize','NoiseLevel'], values='R2_Test')
+  pivot = pivot.reindex(instances)
+
   pivot.to_csv(f'./results/{fileName}.csv')
   pivot.to_latex(f'./results/{fileName}.tex', formatters = formatters, float_format = float_format)
+
 
 summary = pd.read_csv('./experiments/results/summary_best.csv')
 reportSuccessfulRuns(summary,'sucessful_runs_best_configuration', float_format="{:.0f}".format)
