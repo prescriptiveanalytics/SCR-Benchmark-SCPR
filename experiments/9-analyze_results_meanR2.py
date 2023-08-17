@@ -54,7 +54,7 @@ def plotFigure(yAxis, yAxisLabel, plot = 'boxplot'):
   for sampleSize in np.unique(mean_per_repetition['SampleSize']):
     col = 0
     for noiseLevel in np.unique(mean_per_repetition['NoiseLevel']):
-      df = mean_per_repetition[ ((mean_per_repetition['SampleSize'] == sampleSize) |
+      df = mean_per_repetition[ ((mean_per_repetition['SampleSize'] == sampleSize) &
                         (mean_per_repetition['NoiseLevel'] == noiseLevel)) ]
       
       if(plot == 'boxplot'):
