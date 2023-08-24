@@ -18,6 +18,7 @@ FeynmanBonus6,4,10.0,1.0,3
 FeynmanBonus7,5,1.0,0.5,2
 FeynmanBonus9,5,10.0,0.0,3
 FeynmanICh15Eq3t,1,1e-07,1.0,2
+FeynmanICh15Eq3x,1,1e-07,1.0,2
 FeynmanICh29Eq16,5,0.01,0.5,3
 FeynmanICh30Eq3,4,1e-07,0.5,2
 FeynmanICh32Eq17,2,0.0001,0.0,2
