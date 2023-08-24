@@ -20,9 +20,13 @@ results = pd.read_csv('./experiments/results/violations_best.csv')
 print(np.unique(results['EquationName']))
 print(len(np.unique(results['EquationName'])))
 
-results['ConstraintsCount'] = [ rng.randint(1,40) for i in range(0,len(results))]
-results['ConstraintsViolated'] = [ rng.randint(0,results.iloc[i]['ConstraintsCount']) for i in range(0,len(results))]
+results['ConstraintsCount'].fillna(1, inplace=True)
+results['ConstraintsViolated'].fillna(1, inplace=True)
+results['R2_Test'].fillna(-10, inplace=True)
+
+
 results['ConstraintsAchievedScaled'] = 1-(results['ConstraintsViolated']/results['ConstraintsCount'])
+results['ConstraintsAchievedScaled'].fillna(1, inplace=True)
 results['SampleSize'] = [ filename.split('sample_size')[1].split('_')[0] for filename in results['DataSourceFile']]
 results['NoiseLevel'] = [ filename.split('noise_level')[1].split('_')[0] for filename in results['DataSourceFile']]
 results['CountHelper'] = [1] * len(results)
@@ -64,7 +68,7 @@ results["Constraint_Score"] = pd.Categorical(results['Constraint_Score'], catego
 
 
 norm = Normalize(vmin=0, vmax=100)
-cmap = sns.color_palette("mako", as_cmap=True)
+cmap = sns.color_palette("rocket_r", as_cmap=True)
 # ax.set_xlabel(f'error function width $\psi$')
 # ax.set_ylabel(f'noise level $\zeta$')
 f, ax = plt.subplots(2,5, figsize=(9, 4), sharex=True, sharey=True)

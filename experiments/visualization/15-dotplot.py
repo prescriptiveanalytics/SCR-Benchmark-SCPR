@@ -21,17 +21,21 @@ results = pd.read_csv('./experiments/results/violations_best.csv')
 print(np.unique(results['EquationName']))
 print(len(np.unique(results['EquationName'])))
 
-results['ConstraintsDerivative1Count'] = [ rng.randint(1,40) for i in range(0,len(results))]
-results['ConstraintsDerivative2Count'] = [ rng.randint(1,40) for i in range(0,len(results))]
-results['ConstraintsViolatedDerivative1Count'] = [ rng.randint(0,results.iloc[i]['ConstraintsDerivative1Count']) for i in range(0,len(results))]
-results['ConstraintsViolatedDerivative2Count'] = [ rng.randint(0,results.iloc[i]['ConstraintsDerivative2Count']) for i in range(0,len(results))]
-results['ConstraintsCount'] = results['ConstraintsDerivative1Count'] + results['ConstraintsDerivative2Count']
-results['ConstraintsViolated'] = results['ConstraintsViolatedDerivative1Count'] + results['ConstraintsViolatedDerivative2Count']
+results['ConstraintsCount'].fillna(1, inplace=True)
+results['ConstraintsDerivative1Count'].fillna(1, inplace=True)
+results['ConstraintsDerivative2Count'].fillna(1, inplace=True)
+results['ConstraintsViolated'].fillna(1, inplace=True)
+results['ConstraintsViolatedDerivative1Count'].fillna(1, inplace=True)
+results['ConstraintsViolatedDerivative2Count'].fillna(1, inplace=True)
+results['R2_Test'].fillna(-10, inplace=True)
 
 results['ConstraintsAchievedScaled'] = (1-(results['ConstraintsViolated']/results['ConstraintsCount']) ) * 100
 results['ConstraintsAchievedDerivative1Scaled'] = (1-(results['ConstraintsViolatedDerivative1Count']/results['ConstraintsDerivative1Count'])) * 100
 results['ConstraintsAchievedDerivative2Scaled'] = (1-(results['ConstraintsViolatedDerivative2Count']/results['ConstraintsDerivative2Count'])) * 100
 
+results['ConstraintsAchievedScaled'].fillna(100, inplace=True)
+results['ConstraintsAchievedDerivative1Scaled'].fillna(100, inplace=True)
+results['ConstraintsAchievedDerivative2Scaled'].fillna(100, inplace=True)
 
 results['SampleSize'] = [ float(filename.split('sample_size')[1].split('_')[0]) for filename in results['DataSourceFile']]
 results['NoiseLevel'] = [ float(filename.split('noise_level')[1].split('_')[0]) for filename in results['DataSourceFile']]
@@ -72,11 +76,11 @@ for sampleSize in [100,1000]:
       if(label == "R2_test"):
         ax.set( xlabel="mean $R^2$ validation", ylabel="")
       if(label == "ConstraintsAchievedScaled"):
-        ax.set(xlim=(0,100), xlabel="mean %\nachieved constraints\ntotal", ylabel="")
+        ax.set(xlim=(-10,110), xlabel="mean %\nachieved constraints\ntotal", ylabel="")
       if(label == "ConstraintsAchievedDerivative1Scaled"):
-        ax.set(xlim=(0,100), xlabel="mean %\nachieved constraints\ndegree 1", ylabel="")
+        ax.set(xlim=(-10,110), xlabel="mean %\nachieved constraints\ndegree 1", ylabel="")
       if(label == "ConstraintsAchievedDerivative2Scaled"):
-        ax.set(xlim=(0,100), xlabel="mean %\nachieved constraints\ndegree 2", ylabel="")
+        ax.set(xlim=(-10,110), xlabel="mean %\nachieved constraints\ndegree 2", ylabel="")
 
 
   sns.despine(left=True, bottom=True)
