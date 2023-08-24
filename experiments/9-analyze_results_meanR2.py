@@ -5,6 +5,7 @@ import seaborn as sns
 import os
 import pandas as pd
 import numpy as np
+from scipy import stats
 
 summary_best = pd.read_csv('./experiments/results/summary_best.csv')
 summary_best['Configuration'] = ['best parameters'] * len(summary_best)
@@ -45,9 +46,12 @@ print(np.unique(mean_per_repetition['NoiseLevel']))
 
 
 def plotFigure(yAxis, yAxisLabel, plot = 'boxplot'):
-  f, ax = plt.subplots(2,5, figsize=(10, 4), sharex=True, sharey=True)
+  rows = 2
+  columns = 5
+  f, ax = plt.subplots(rows,columns, figsize=(10, 4), sharex=True, sharey=True)
   plt.subplots_adjust(left=0.11, bottom=0.1, right=0.98, top=0.90, wspace=0.1, hspace=0.1)
 
+  pvalues = np.zeros((rows,columns))
   row = 0
   max_row_idx = len(np.unique(mean_per_repetition['SampleSize']))-1
 
@@ -73,6 +77,11 @@ def plotFigure(yAxis, yAxisLabel, plot = 'boxplot'):
       
       bx.set(xticklabels=[])
 
+      distributions = []
+      for config in np.unique(df['Configuration']):
+        distributions.append(np.array(df[df['Configuration'] == config][yAxis]))
+      (statistic, pvalue) = stats.kruskal(*distributions)
+      pvalues[row,col] = pvalue
       # ax[row,col].set_yscale("log")
 
       if(row == max_row_idx):
@@ -102,6 +111,9 @@ def plotFigure(yAxis, yAxisLabel, plot = 'boxplot'):
   # plt.show()
   plt.clf()
   plt.close()
+
+  print(f"PValues {yAxisLabel}")
+  print(pvalues)
 
 plotFigure("R2_Training", "R2 training",'boxplot')
 plotFigure("R2_Test", "R2 validation",'boxplot')
