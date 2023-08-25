@@ -56,7 +56,7 @@ def GetConstraintScore(row):
     return ConstraintScoreOrder[0]
   elif(row['ConstraintsAchievedScaled'] <= 0.5):
     return ConstraintScoreOrder[1]
-  elif(row['ConstraintsAchievedScaled'] <= 1):
+  elif(row['ConstraintsAchievedScaled'] < 1):
     return ConstraintScoreOrder[2]
   elif(row['ConstraintsAchievedScaled'] == 1):
     return ConstraintScoreOrder[3]
