@@ -64,8 +64,8 @@ for sampleSize in [100,1000]:
   plt.subplots_adjust(left=0.17, bottom=0.09, right=0.90, top=0.97, wspace=0.16, hspace=0.1)
 
   # Draw a dot plot using the stripplot function
-  g.map(sns.stripplot, size=7, orient="h", jitter=True,
-        palette="flare_r", linewidth=1, edgecolor=None, marker = 'X')
+  g.map(sns.stripplot, size=7, orient="h", jitter=False,
+        palette="flare_r", linewidth=0, edgecolor=None, marker = 'v', alpha = 0.5)
   g.add_legend()
 
   for ax in g.axes.flat:

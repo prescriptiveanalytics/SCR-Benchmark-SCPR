@@ -68,7 +68,7 @@ results["Constraint_Score"] = pd.Categorical(results['Constraint_Score'], catego
 
 
 norm = Normalize(vmin=0, vmax=100)
-cmap = sns.color_palette("rocket_r", as_cmap=True)
+cmap = sns.color_palette("flare", as_cmap=True)
 # ax.set_xlabel(f'error function width $\psi$')
 # ax.set_ylabel(f'noise level $\zeta$')
 f, ax = plt.subplots(2,5, figsize=(9, 4), sharex=True, sharey=True)
