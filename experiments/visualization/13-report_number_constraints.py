@@ -52,8 +52,8 @@ def CheckConstraints(df, data_name):
     i = i+1
     if(i%100 == 0):
       print('saving intermediate')
-      df.to_csv(f'./results/{data_name}.csv')
-  df.to_csv(f'./results/{data_name}.csv')
+      df.to_csv(f'./experiments/results/{data_name}.csv')
+  df.to_csv(f'./experiments/results/{data_name}.csv')
 
 CheckConstraints(summary_best, 'violations_best')
 CheckConstraints(summary_degree2, 'violations_degree2')
