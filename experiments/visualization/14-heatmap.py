@@ -109,4 +109,3 @@ for sampleSize in np.unique(results['SampleSize']):
 
 plt.savefig(f'./results/heatmap.pdf',dpi = 500)
 plt.savefig(f'./results/heatmap.png',dpi = 500)
-plt.show()

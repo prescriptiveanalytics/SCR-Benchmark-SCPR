@@ -87,6 +87,5 @@ for sampleSize in [100,1000]:
 
   plt.savefig(f'./results/dotplot_SampleSize{sampleSize}.pdf',dpi = 500)
   plt.savefig(f'./results/dotplot_SampleSize{sampleSize}.png',dpi = 500)
-  plt.show()
   plt.clf()
   plt.close()
