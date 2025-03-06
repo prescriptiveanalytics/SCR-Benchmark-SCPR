@@ -1,14 +1,18 @@
 from SCRBenchmark import FEYNMAN_SRSD_HARD,HARD_NOISE_LEVELS,HARD_SAMPLE_SIZES
 from SCRBenchmark import BenchmarkSuite
+from SCRBenchmark import StringKeys as sk
 import json
 import numpy as np
 
 target_folder = './experiments/gridsearch_data'
 
-Degrees = [1,2,3,4,5]
+Degrees = [2,3,4,5,6]
 Lambdas = [10**-7,10**-6,10**-5,10**-4,10**-3,10**-2,10**-1,1,10]
 Alphas = [0,0.5,1]
 MaxInteractions = [2,3]
+
+HARD_SAMPLE_SIZES = [100]
+HARD_NOISE_LEVELS = [0.05]
 
 print('generating instances')
 #creates one folder per equation under the parent folder
@@ -17,7 +21,8 @@ print('generating instances')
 BenchmarkSuite.create_hard_instances(target_folder = target_folder,
                                         Equations= FEYNMAN_SRSD_HARD,
                                         sample_sizes=HARD_SAMPLE_SIZES,
-                                        noise_levels=HARD_NOISE_LEVELS)
+                                        noise_levels=HARD_NOISE_LEVELS,
+                                        repetitions=1)
 
 # for shape-constrained polynomial regression we add
 # the algorithm configuration to the generated json files
@@ -35,15 +40,16 @@ for equation_name in FEYNMAN_SRSD_HARD:
 
     supportedConstraints = []
     for constraint in data['Constraints']:
-      if constraint['order_derivative'] == 2:
-        variables = np.unique(constraint['var_name'])
-        variables_display = np.unique(constraint['var_display_name'])
-        if(len(variables) == 1):
-          constraint['var_name'] = variables[0]
-          constraint['var_display_name'] = variables_display[0]
-          supportedConstraints.append(constraint)
-      else: 
-        supportedConstraints.append(constraint)
+      # if constraint['order_derivative'] == 0:
+      #   continue
+      # if constraint['descriptor'] == sk.EQUATION_CONSTRAINTS_DESCRIPTOR_ZERO:
+      #   continue
+      if constraint['descriptor'] == sk.EQUATION_CONSTRAINTS_DESCRIPTOR_NEGATIVE:
+        constraint['descriptor'] = 'decreasing'
+      if constraint['descriptor'] == sk.EQUATION_CONSTRAINTS_DESCRIPTOR_POSITIVE:
+        constraint['descriptor'] = 'increasing'
+      
+      supportedConstraints.append(constraint)
     data['Constraints'] = supportedConstraints
     
     f.seek(0)

@@ -354,7 +354,13 @@ IEnumerable<ConstraintTuple> CreateConstraint(EquationInfo equationInfo) {
         -1,  // sign
         (double[])lb.Clone(),   // the input space bounds
         (double[])ub.Clone());  // the input space bounds   
-
+    else if (constraint.descriptor.Contains("zero"))
+      yield return Tuple.Create(constraint.var_name,
+        constraint.order_derivative,
+        0.0,    // threshold (here, highest function value)
+        0,  // sign
+        (double[])lb.Clone(),   // the input space bounds
+        (double[])ub.Clone());  // the input space bounds
   }
 }
 

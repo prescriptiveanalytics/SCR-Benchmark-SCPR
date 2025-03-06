@@ -1,1 +1,0 @@
-.\SCPR-Wrapper\publish\SCPRRunner.Console.exe .\experiments\repeated_best_degree3_data .\experiments\results\degree3_config_individual_files .\experiments\results\summary_degree3.csv 10 False 20

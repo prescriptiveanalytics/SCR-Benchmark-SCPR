@@ -1,0 +1,1 @@
+.\SCPR-Wrapper\SCPRRunner\publish\SCPRRunner.Console.exe .\experiments\gridsearch_data .\experiments\results\gridsearch_data_individual_files .\results\1-gridsearch_results.csv 10 False 20

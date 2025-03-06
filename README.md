@@ -42,11 +42,11 @@ The supplementary material addresses this issue by reporting how many of the 10 
 This issue significantly affects one equation instance for runs of degree 2 and degree 3. Whereas the best SCPR configuration is only affected in 1/10 repetitions. Cf. the `./result/` folder or our evaluation script `./experiments/10-report_table.py` for more details.
 
 
-![results](./results/summary_boxplot_R2_Training.png)
+![results](./result-figures/summary_boxplot_R2_Training.png)
 
-![results](./results/summary_pointplot_R2_Training.png)
+![results](./results-figures/summary_pointplot_R2_Training.png)
 
 Results on the validation data (no noise, more data points in the extrapolation range. See our [benchmark repository](https://github.com/florianBachinger/SCR-Benchmarks-NIPS) for more details):
-![results](./results/summary_boxplot_R2_Test.png)
+![results](./results-figures/summary_boxplot_R2_Test.png)
 
-![results](./results/summary_pointplot_R2_Test.png)
+![results](./results-figures/summary_pointplot_R2_Test.png)

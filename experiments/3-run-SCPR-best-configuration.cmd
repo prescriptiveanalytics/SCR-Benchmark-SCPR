@@ -1,0 +1,1 @@
+.\SCPR-Wrapper\SCPRRunner\publish\SCPRRunner.Console.exe .\experiments\repeated_best_config_data .\experiments\results\best_config_individual_files .\results\3-benchmark-results-best-configuration.csv 10 True 40
