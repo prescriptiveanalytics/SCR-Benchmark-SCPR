@@ -110,6 +110,6 @@ for sampleSize in np.unique(results['SampleSize']):
   row = row+1
 
 
-plt.savefig(f'./result-figures/heatmap.pdf',dpi = 500)
-plt.savefig(f'./result-figures/heatmap.png',dpi = 500)
+plt.savefig(f'./result-figures/scpr-heatmap.pdf',dpi = 500)
+plt.savefig(f'./result-figures/scpr-heatmap.png',dpi = 500)
 plt.show()

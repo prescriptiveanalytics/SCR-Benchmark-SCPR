@@ -178,3 +178,4 @@ obj/
 bin/
 .vs
 *.user
+CACHEDIR.TAG

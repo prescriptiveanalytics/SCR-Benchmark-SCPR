@@ -89,7 +89,7 @@ for sampleSize in [1000,10000]:
 
   sns.despine(left=True, bottom=True)
 
-  plt.savefig(f'./result-figures/dotplot_SampleSize{sampleSize}.pdf',dpi = 500)
-  plt.savefig(f'./result-figures/dotplot_SampleSize{sampleSize}.png',dpi = 500)
+  plt.savefig(f'./result-figures/scpr-dotplot_SampleSize{sampleSize}.pdf',dpi = 500)
+  plt.savefig(f'./result-figures/scpr-dotplot_SampleSize{sampleSize}.png',dpi = 500)
   plt.clf()
   plt.close()
