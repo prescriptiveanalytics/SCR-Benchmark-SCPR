@@ -74,7 +74,7 @@ norm = Normalize(vmin=0, vmax=100)
 cmap =sns.light_palette("seagreen", as_cmap=True)
 # ax.set_xlabel(f'error function width $\psi$')
 # ax.set_ylabel(f'noise level $\zeta$')
-f, ax = plt.subplots(2,3, figsize=(5, 3), sharex=True, sharey=True)
+f, ax = plt.subplots(2,3, figsize=(5, 3.5), sharex=True, sharey=True)
 plt.subplots_adjust(left=0.21, bottom=0.365, right=0.87, top=1, wspace=0.1, hspace=0.1)
 cbar_ax = f.add_axes([.921, .55, .02, .3])
 
@@ -97,9 +97,9 @@ for sampleSize in np.unique(results['SampleSize']):
     hm = sns.heatmap(data=pivot, ax=ax[row,col], norm=norm, cmap=cmap, cbar_ax=cbar_ax, annot=True, fmt='.1f', annot_kws={"size": 8})
 
     if((row == max_row_idx ) and (col == 1)):
-      ax[row,col].set_xlabel(f'achieved constraints\nnoise level = {noiseLevel}')
+      ax[row,col].set_xlabel(f'noise level = {noiseLevel.replace(",",".")}\nachieved constraints in %')
     else:
-      ax[row,col].set_xlabel(f'')
+      ax[row,col].set_xlabel(f'noise level = {noiseLevel.replace(",",".")}')
     if(col == 0):
       ax[row,col].set_ylabel(f'{sampleSize} samples\n$R^2$ validation')
     else:
