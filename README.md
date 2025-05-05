@@ -1,5 +1,5 @@
 # SCR-Benchmark-SCPR
-This repository contains the results of **shape-constrained polynomial regression (SCPR)** on datasets of our shape-constrained regression benchmark [SCR-Benchmark](https://github.com/florianBachinger/SCR-Benchmarks-NIPS).
+This repository contains the results of **shape-constrained polynomial regression (SCPR)** on datasets of our shape-constrained regression benchmark [SCR-Benchmark](https://github.com/prescriptiveanalytics/SCR-Benchmarks).
 
 
 ## Shape-constrained polynomial regression (SCPR)
